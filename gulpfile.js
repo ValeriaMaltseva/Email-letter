@@ -5,7 +5,6 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 
 const imagemin = require('gulp-imagemin');
-var svgSprite = require("gulp-svg-sprites");
 
 var concat = require('gulp-concat');
 var del = require('del');
@@ -41,7 +40,7 @@ var stylFiles = [
 var jsFiles = [
 	'src/vendor/**/*.js',
 	'src/assets/**/*.js',
-	'src/blocks/**/*.js'	
+	'src/blocks/**/*.js'
 ];
 
 var imgFiles = [
@@ -74,12 +73,6 @@ gulp.task('js', function () {
     .pipe(gulp.dest('build'))
 });
 
-gulp.task('sprites', function () {
-  return gulp.src('src/assets/**/*.svg}')
-    .pipe(svgSprite())
-    .pipe(gulp.dest("build/assets"));
-});
-
 gulp.task('img', function () {
   return gulp.src(imgFiles)
     .pipe(imagemin())
@@ -97,7 +90,7 @@ gulp.task('clean', function(){
 	return del('./build');	
 });
 
-gulp.task('build', gulp.parallel('stylus', 'pug', 'js', 'sprites', 'img'));
+gulp.task('build', gulp.parallel('stylus', 'pug', 'js', 'img'));
 
 gulp.task('serve', gulp.parallel('watch', serve));
 
